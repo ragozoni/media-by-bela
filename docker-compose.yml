@@ -1,0 +1,7 @@
+services:
+  site:
+    build: .
+    container_name: media-by-bela
+    ports:
+      - "8080:80"
+    restart: unless-stopped
