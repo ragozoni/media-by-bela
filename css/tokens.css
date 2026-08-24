@@ -1,0 +1,15 @@
+:root {
+    /* Tipografia */
+    --font-primary: 'Bricolage Grotesque', sans-serif;
+    --font-primary-weight: 700; /* negrito */
+    --font-secondary: 'Instrument Sans', sans-serif;
+
+    /* Paleta */
+    --color-base: #F5EDE3;
+    --color-principal: #D94270;
+    --color-apoio-quente: #F28BAD;
+    --color-acento: #FF6B9D;
+    --color-apoio-coral: #F06C49;
+    --color-contraste: #2B1A1E;
+    --color-neutro: #F4F4EF;
+}
