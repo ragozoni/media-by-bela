@@ -1,2 +1,3 @@
-detalhes-mbb.md
 .idea/
+*.env
+details/
