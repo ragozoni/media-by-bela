@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media by Bela — Portfólio Design</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- tokens.css precisa vir antes, pois portfolio.css depende das variáveis dele -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/portfolio.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+</head>
+<body>
+<main>
+
+    <header class="portfolio-header">
+        <a href="links_page.html" class="back-btn" aria-label="Voltar para os links">
+            <i class="fa-solid fa-chevron-left"></i>
+        </a>
+        <div class="header-titles">
+            <span class="eyebrow">Media by Bela</span>
+            <h1>Portfólio — Design</h1>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab active" data-tab="estaticos">Estáticos</button>
+        <button class="tab" data-tab="carrosseis">Carrosséis</button>
+        <button class="tab" data-tab="stories">Stories</button>
+    </nav>
+
+    <section id="panel-estaticos" class="tab-panel active"></section>
+    <section id="panel-carrosseis" class="tab-panel"></section>
+    <section id="panel-stories" class="tab-panel"></section>
+
+    <footer>
+        Media by Bela © 2026. Todos os direitos reservados.<br>
+        feito com ♡ por Media by Bela
+    </footer>
+
+</main>
+
+<script src="../js/portfolio-config.js"></script>
+<script src="../js/portfolio.js"></script>
+
+</body>
+</html>

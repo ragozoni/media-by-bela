@@ -1,0 +1,487 @@
+/* portfolio.css — estilos da página de portfólio "media-by-bela-portfolio" */
+/* Depende de tokens.css estar carregado antes deste arquivo */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Reserva o espaço da barra de rolagem sempre, mesmo quando o
+       conteúdo da aba ativa não precisa dela. Sem isso, trocar de aba
+       (ex: Carrosséis, com menos conteúdo) remove a barra e desloca
+       o conteúdo centralizado alguns pixels para a direita. */
+    overflow-y: scroll; /* fallback para navegadores sem scrollbar-gutter */
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: var(--font-secondary);
+    background: radial-gradient(circle at 85% 0%, var(--color-apoio-quente) 0%, transparent 45%),
+    var(--color-base);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 20px 48px;
+    color: var(--color-contraste);
+}
+
+main {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header */
+.portfolio-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.back-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: var(--color-neutro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-principal);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+    background: var(--color-apoio-quente);
+    transform: translateX(-2px);
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.eyebrow {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-contraste);
+    opacity: 0.55;
+}
+
+.portfolio-header h1 {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-principal);
+    letter-spacing: -0.02em;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-neutro);
+    border-radius: 999px;
+    padding: 6px;
+}
+
+.tab {
+    flex: 1;
+    appearance: none;
+    border: none;
+    background: transparent;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-contraste);
+    opacity: 0.55;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+
+.tab:hover {
+    opacity: 0.8;
+}
+
+.tab.active {
+    background: var(--color-principal);
+    color: var(--color-neutro);
+    opacity: 1;
+    box-shadow: 0 6px 16px rgba(217, 66, 112, 0.3);
+}
+
+/* Painéis de conteúdo */
+.tab-panel {
+    display: none;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.tab-panel.active {
+    display: flex;
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-principal);
+}
+
+.section-label .marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    border: 2px solid var(--color-principal);
+}
+
+/* Grupos por cliente (usado na aba Estáticos) */
+.client-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.client-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.client-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.client-header h3 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-contraste);
+}
+
+.client-meta {
+    font-size: 0.78rem;
+    color: var(--color-contraste);
+    opacity: 0.6;
+}
+
+/* Grade de artes (aba Estáticos) */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.portfolio-card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-neutro);
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.portfolio-card .caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-neutro);
+    background: linear-gradient(0deg, rgba(43, 26, 30, 0.75), transparent);
+}
+
+/* Placeholder — arte ainda não enviada */
+.portfolio-card.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--color-base);
+    border: 2px dashed var(--color-apoio-quente);
+    color: var(--color-principal);
+}
+
+.portfolio-card.placeholder i {
+    font-size: 1.3rem;
+    opacity: 0.7;
+}
+
+.portfolio-card.placeholder span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.65;
+    padding: 0 10px;
+}
+
+/* ==========================================================
+   Carrosséis — cards grandes empilhados, com contador e dots
+   ========================================================== */
+
+.carousel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carousel-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--color-neutro);
+    box-shadow: 0 4px 16px rgba(43, 26, 30, 0.10);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carousel-card:hover,
+.carousel-card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(43, 26, 30, 0.16);
+}
+
+.carousel-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--color-contraste);
+    overflow: hidden;
+}
+
+.carousel-cover.draggable {
+    cursor: grab;
+    touch-action: pan-y; /* deixa o scroll vertical da página livre; só o eixo horizontal é capturado pelo JS */
+}
+
+.carousel-cover.draggable.dragging {
+    cursor: grabbing;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.carousel-track img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    -webkit-user-drag: none;
+}
+
+.carousel-card.placeholder .carousel-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-neutro);
+    opacity: 0.5;
+    font-size: 2rem;
+}
+
+.slides-count-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--color-neutro);
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.swipe-hint {
+    position: absolute;
+    bottom: 34px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.45);
+    color: var(--color-neutro);
+    font-family: var(--font-secondary);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.carousel-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-dots .dot.active {
+    background: var(--color-principal);
+}
+
+.carousel-info {
+    padding: 14px 16px 16px;
+}
+
+.carousel-title {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-contraste);
+}
+
+.carousel-subtitle {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-secondary);
+    font-size: 0.82rem;
+    color: var(--color-contraste);
+    opacity: 0.65;
+}
+
+/* ==========================================================
+   Stories — lista de destaques com avatar circular e play
+   ========================================================== */
+
+.story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.story-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--color-base);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.story-row:hover,
+.story-row:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(43, 26, 30, 0.10);
+}
+
+.story-avatar {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--color-acento), var(--color-principal));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-neutro);
+}
+
+.story-avatar i {
+    color: var(--color-neutro);
+    font-size: 1.2rem;
+}
+
+.story-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.story-title {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-principal);
+}
+
+.story-subtitle {
+    display: block;
+    margin-top: 3px;
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    color: var(--color-contraste);
+    opacity: 0.6;
+}
+
+.story-play {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    background: var(--color-principal);
+    color: var(--color-neutro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.75rem;
+    opacity: 0.55;
+    line-height: 1.6;
+    padding-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
