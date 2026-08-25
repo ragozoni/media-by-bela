@@ -177,21 +177,21 @@ h1 {
 .link-card.primary .link-desc { opacity: 0.85; }
 
 .link-card.accent {
-    background: var(--color-apoio-quente);
+    background: var(--color-rosa-chiclete);
     color: var(--color-contraste);
 }
 .link-card.accent .link-icon { background: rgba(255, 255, 255, 0.4); }
 
 .link-card.outline {
     background: var(--color-neutro);
-    border: 2px solid var(--color-principal);
+    border: 2px solid var(--color-rosa-bebe);
     color: var(--color-principal);
 }
 .link-card.outline .link-icon { background: var(--color-base); }
 .link-card.outline .link-desc { color: var(--color-contraste); opacity: 0.65; }
 
 .link-card.dark {
-    background: var(--color-contraste);
+    background: var(--color-coral);
     color: var(--color-neutro);
 }
 .link-card.dark .link-icon { background: rgba(255, 255, 255, 0.12); }
