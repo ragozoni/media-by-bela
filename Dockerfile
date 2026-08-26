@@ -13,7 +13,7 @@ COPY html/    /usr/share/nginx/html/html/
 
 # Redireciona a raiz do site pra página de links,
 # já que ela fica em /html/links_page.html
-RUN echo '<meta http-equiv="refresh" content="0; url=/html/links_page.html">' > /usr/share/nginx/html/index.html
+#RUN echo '<meta http-equiv="refresh" content="0; url=/html/links_page.html">' > /usr/share/nginx/html/index.html
 
 EXPOSE 80
 
