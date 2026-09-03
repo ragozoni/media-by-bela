@@ -1,0 +1,24 @@
+{
+  "estaticos": [
+    {
+      "client": "Nome do Cliente",
+      "meta": "Categoria · Descrição breve",
+      "items": [
+        { "image": null, "caption": "" },
+        { "image": null, "caption": "" },
+        { "image": null, "caption": "" }
+      ]
+    }
+  ],
+  "carrosseis": [
+    {
+      "client": "Nome do Cliente",
+      "handle": "",
+      "meta": "Categoria · Descrição breve",
+      "items": [
+        { "images": [], "caption": "" }
+      ]
+    }
+  ],
+  "stories": []
+}
