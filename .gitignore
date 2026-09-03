@@ -1,3 +1,14 @@
 .idea/
 *.env
 details/
+
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+users.json
+
+uploads/*
+!uploads/.gitkeep

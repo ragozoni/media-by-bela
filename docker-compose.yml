@@ -1,7 +1,27 @@
 services:
   site:
     build: .
-    container_name: media-by-bela
+    container_name: media-by-bela-frontend
     ports:
       - "8080:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    container_name: media-by-bela-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - FLASK_ENV=production
+      - CORS_ORIGINS=http://localhost:8080
+    volumes:
+      # Sem esses volumes, qualquer edição feita pelo admin (portfólio,
+      # links, imagens, usuários) seria perdida no próximo rebuild da
+      # imagem — o COPY do Dockerfile só roda uma vez, no build.
+      - ./backend/data:/app/data
+      - ./backend/uploads:/app/uploads
+      - ./backend/users.json:/app/users.json
     restart: unless-stopped
