@@ -1,6 +1,7 @@
 /* portfolio.js
-   Renderiza PORTFOLIO_DATA (portfolio-config.js) dentro de cada painel
-   e controla a troca de abas.
+   Renderiza os dados do portfólio (agora vindos de /api/portfolio,
+   não mais de um portfolio-config.js fixo) dentro de cada painel, e
+   controla a troca de abas.
 
    Cada aba tem seu próprio layout:
    - estaticos:   grid de miniaturas, agrupado por cliente
@@ -76,8 +77,6 @@ function renderGridPanel(panel, groups) {
 
 /* ---------- Aba: Carrosséis (carrossel arrastável de verdade) ---------- */
 
-// distância mínima (em px) que o dedo/mouse precisa se mover
-// para contar como um swipe e trocar de slide
 const SWIPE_THRESHOLD = 40;
 
 function createCarouselCard(item, group) {
@@ -104,8 +103,6 @@ function createCarouselCard(item, group) {
 
         cover.appendChild(track);
 
-        // Badge "posição atual / total" — o total vem do tamanho
-        // da lista de imagens, nunca de um número fixo
         const badge = document.createElement("span");
         badge.className = "slides-count-badge";
         badge.innerHTML = `<i class="fa-solid fa-layer-group"></i> <span class="count-current">1</span>/${total}`;
@@ -113,7 +110,6 @@ function createCarouselCard(item, group) {
 
         let dotsEl = null;
 
-        // Dica de arrastar e dots só fazem sentido com mais de 1 slide
         if (total > 1) {
             const hint = document.createElement("span");
             hint.className = "swipe-hint";
@@ -160,11 +156,6 @@ function createCarouselCard(item, group) {
     return card;
 }
 
-/**
- * Liga o arraste (touch no celular, clicar-e-arrastar no mouse) usando
- * Pointer Events — uma única API que cobre os dois casos, então não
- * precisa de listeners separados para touchstart/mousedown.
- */
 function setupCarouselDrag({ cover, track, badge, dotsEl, total }) {
     let currentIndex = 0;
     let startX = 0;
@@ -184,7 +175,7 @@ function setupCarouselDrag({ cover, track, badge, dotsEl, total }) {
         }
     }
 
-    if (total <= 1) return; // nada pra arrastar com 1 slide só
+    if (total <= 1) return;
 
     cover.classList.add("draggable");
 
@@ -212,11 +203,11 @@ function setupCarouselDrag({ cover, track, badge, dotsEl, total }) {
         const delta = e.clientX - startX;
 
         if (delta <= -SWIPE_THRESHOLD) {
-            goToSlide(currentIndex + 1); // arrastou pra esquerda -> próxima imagem
+            goToSlide(currentIndex + 1);
         } else if (delta >= SWIPE_THRESHOLD) {
-            goToSlide(currentIndex - 1); // arrastou pra direita -> imagem anterior
+            goToSlide(currentIndex - 1);
         } else {
-            goToSlide(currentIndex); // arraste curto demais, volta pro lugar
+            goToSlide(currentIndex);
         }
     }
 
@@ -310,11 +301,12 @@ function renderStoriesPanel(panel, groups) {
 
 /* ---------- Dispatcher geral ---------- */
 
-function renderPanel(tabKey) {
+function renderPanel(tabKey, data) {
     const panel = document.getElementById(`panel-${tabKey}`);
     if (!panel) return;
 
-    const groups = PORTFOLIO_DATA[tabKey] || [];
+    panel.innerHTML = "";
+    const groups = data[tabKey] || [];
 
     const label = document.createElement("div");
     label.className = "section-label";
@@ -343,7 +335,18 @@ function initTabs() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    Object.keys(PORTFOLIO_DATA).forEach(renderPanel);
+async function loadPortfolioData() {
+    const res = await fetch(`${API_BASE}/api/portfolio`);
+    if (!res.ok) throw new Error("não foi possível carregar o portfólio");
+    return res.json();
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const data = await loadPortfolioData();
+        Object.keys(SECTION_LABELS).forEach(tab => renderPanel(tab, data));
+    } catch (err) {
+        console.error("Erro ao carregar portfólio:", err);
+    }
     initTabs();
 });

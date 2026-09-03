@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media by Bela — Painel Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header class="admin-header">
+  <h1>Painel Admin</h1>
+  <div class="who">
+    <span>Olá, <strong id="admin-username">...</strong></span>
+    <button id="logout-btn" class="btn-logout">Sair</button>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <nav class="admin-tabs">
+    <button class="admin-tab active" data-tab="links">Links</button>
+    <button class="admin-tab" data-tab="estaticos">Estáticos</button>
+    <button class="admin-tab" data-tab="carrosseis">Carrosséis</button>
+    <button class="admin-tab" data-tab="stories">Stories</button>
+  </nav>
+
+  <!-- ---------- Links ---------- -->
+  <section id="admin-panel-links" class="admin-panel active">
+    <form id="links-form">
+      <div class="field">
+        <label for="link-instagram">Instagram</label>
+        <input type="text" id="link-instagram" name="instagram">
+      </div>
+      <div class="field">
+        <label for="link-whatsapp">WhatsApp</label>
+        <input type="text" id="link-whatsapp" name="whatsapp">
+      </div>
+      <div class="field">
+        <label for="link-behance">Behance</label>
+        <input type="text" id="link-behance" name="behance">
+      </div>
+      <div class="field">
+        <label for="link-socialMedia">Card — Social Media</label>
+        <input type="text" id="link-socialMedia" name="socialMedia">
+      </div>
+      <div class="field">
+        <label for="link-design">Card — Design</label>
+        <input type="text" id="link-design" name="design">
+      </div>
+      <div class="field">
+        <label for="link-portfolioDesign">Card — Portfólio Design</label>
+        <input type="text" id="link-portfolioDesign" name="portfolioDesign">
+      </div>
+      <div class="field">
+        <label for="link-portfolioSocialMedia">Card — Portfólio Social Media</label>
+        <input type="text" id="link-portfolioSocialMedia" name="portfolioSocialMedia">
+      </div>
+
+      <p id="links-status"></p>
+      <button type="submit" class="btn-primary">Salvar links</button>
+    </form>
+  </section>
+
+  <!-- ---------- Portfólio (preenchido via JS) ---------- -->
+  <section id="admin-panel-estaticos" class="admin-panel"></section>
+  <section id="admin-panel-carrosseis" class="admin-panel"></section>
+  <section id="admin-panel-stories" class="admin-panel"></section>
+
+</main>
+
+<script src="../js/api-config.js"></script>
+<script src="../js/auth-guard.js"></script>
+<script src="../js/admin-dashboard.js"></script>
+
+</body>
+</html>
