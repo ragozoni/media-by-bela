@@ -1,0 +1,15 @@
+{
+  "name": "media-by-bela-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.37.0"
+  }
+}

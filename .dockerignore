@@ -1,8 +1,24 @@
 .git
 .gitignore
 .idea
+.DS_Store
+
+node_modules
+.wrangler
+ 
+.dev.vars
+.dev.vars.*
+*.env
+.env*
+ 
 Dockerfile
+Dockerfile.worker
 docker-compose.yml
+docker-compose.*.yml
 README.md
+DOCKER.md
 details
+supabase
+uploads
+ 
 

@@ -9,10 +9,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copia o projeto inteiro preservando a estrutura de pastas
 # (css/, html/, js/, details/), já que o HTML usa caminhos
 # relativos como ../css/tokens.css — precisam continuar irmãs
-COPY css/     /usr/share/nginx/html/css/
-COPY js/      /usr/share/nginx/html/js/
-COPY html/    /usr/share/nginx/html/html/
-COPY index.html /usr/share/nginx/html/index.html
+COPY public/ /usr/share/nginx/html/
 
 # Redireciona a raiz do site pra página de links,
 # já que ela fica em /html/links_page.html

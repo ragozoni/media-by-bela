@@ -6,9 +6,15 @@ __pycache__/
 *.pyc
 venv/
 .venv/
-.env
+.env*
 
 users.json
 
 uploads/*
 !uploads/.gitkeep
+
+node_modules/
+.wrangler/
+.dev.vars*
+!.env.example
+.DS_Store

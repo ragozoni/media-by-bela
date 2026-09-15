@@ -1,27 +1,32 @@
 services:
   site:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: media-by-bela-frontend
     ports:
-      - "8080:80"
-    restart: unless-stopped
+      - "${SITE_PORT:-8080}:80"
     depends_on:
-      - backend
-
-  backend:
-    build: ./backend
-    container_name: media-by-bela-backend
-    ports:
-      - "5000:5000"
-    environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - FLASK_ENV=production
-      - CORS_ORIGINS=http://localhost:8080
-    volumes:
-      # Sem esses volumes, qualquer edição feita pelo admin (portfólio,
-      # links, imagens, usuários) seria perdida no próximo rebuild da
-      # imagem — o COPY do Dockerfile só roda uma vez, no build.
-      - ./backend/data:/app/data
-      - ./backend/uploads:/app/uploads
-      - ./backend/users.json:/app/users.json
+      - worker
     restart: unless-stopped
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+ 
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: media-by-bela-worker
+    restart: unless-stopped
+    ports:
+      - "${WORKER_PORT:-8787}:8787"
+    volumes:
+      # Segredos: SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, SUPABASE_SECRET_KEY
+      - ./.dev.vars:/app/.dev.vars:ro
+      # Hot reload do Worker: altere src/index.js e o workerd recarrega
+      - ./src:/app/src:ro
+      - ./wrangler.jsonc:/app/wrangler.jsonc:ro
+      - ./public:/app/public:ro
+      # node_modules fica SÓ na imagem (nunca vem do host, que pode ter
+      # binários de outra plataforma).
